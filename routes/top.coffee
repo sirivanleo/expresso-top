@@ -1,7 +1,7 @@
 express = require 'express'
 router = express.Router()
 c = require('child_process')
-through = require 'through2'
+
 # GET users listing.
 router.get '/', (req, res) ->
 	check_top = c.execSync "top -h"

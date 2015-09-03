@@ -4,6 +4,12 @@ router = express.Router()
 # GET home page.
 
 router.get '/', (req, res) ->
-  res.render 'index', { title: 'Express' }
+	links = {
+		'SabNzb' : '/sab',
+		'Couchpotato' : '/movies'
+		'Sonarr' : '/tv',
+		'Plex' : '/web'
+	}
+	res.render 'index', { title: 'XbServ', links }
 
 module.exports = router

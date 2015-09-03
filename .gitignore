@@ -2,3 +2,6 @@ node_modules/
 public/components
 .sass-cache
 bin/
+libs.css
+libs.js
+style.css
