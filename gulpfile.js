@@ -5,7 +5,8 @@ var gulp = require('gulp'),
   stylus = require('gulp-stylus'),
   bowerMain = require('main-bower-files'),
   gulpFilter = require('gulp-filter'),
-  concat = require('gulp-concat');
+  concat = require('gulp-concat'),
+  coffee = require('gulp-coffee');
 
 gulp.task('bower', function() {
   var jsFilter = gulpFilter('**/*.js'),
@@ -30,8 +31,16 @@ gulp.task('stylus', function () {
     .pipe(livereload());
 });
 
+gulp.task('client-coffee', function(){
+  gulp.src('./public/coffee/*.coffee')
+    .pipe(coffee({bare: false}))
+    .pipe(concat('client.js'))
+    .pipe(gulp.dest('./public/js/'));
+});
+
 gulp.task('watch', function() {
   gulp.watch('./public/css/*.styl', ['stylus']);
+  gulp.watch('./public/coffee/*.coffee', ['client-coffee']);
 });
 
 gulp.task('develop', function () {
@@ -54,6 +63,7 @@ gulp.task('develop', function () {
 gulp.task('default', [
   'bower',
   'stylus',
+  'client-coffee',
   'develop',
   'watch'
 ]);

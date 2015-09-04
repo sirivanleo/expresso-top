@@ -1,27 +1,30 @@
 extends layout
 
 block content
-	.site-wrapper
-		.site-wrapper-inner
-			.cover-container
-				.masthead.clearfix
-					.inner
-						h3.masthead-brand #{title}
-						nav
-							ul.nav.masthead-nav
-								li(class='active')
-									a(href='/') Monitor
-								li
-									a(href='/top') Top
-				.inner.cover
+	nav.navbar
+		.container.masthead
+			.navbar-header
+				h1.navbar-brand.masthead-brand #{title}
+			#navbar
+				ul.nav.navbar-nav.masthead-nav
+					li(class='active')
+						a(href='/') Monitor
+					li
+						a(href='http://192.168.1.1') Router
+	.inner.cover
+		.container
+			.row
+				#links.col-md-4
 					h1.cover-heading Links
 					-
 					each val, index in links
 						p.lead
-							a(href=val) #{index}
-				.mastfoot
-					.inner
-						p Brought to you by Magic :D
+							a(href=val) - #{index}
+				#top.col-md-8
+					h1.cover-heading Top
+					.top-content
+	footer
+		p Brought to you by Magic :D
 
 
 
