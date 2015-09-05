@@ -1,8 +1,8 @@
 "use strict"
 (($) ->
 	$ ->
-		r = $('.top-content')
-		dr = new DrawTop r
-		dr.startTimer(30 * 1000)
+		container = $('.top-content')
+		topRenderer = new DrawTop container, 5 * 1000
+		topRenderer.updateContent()
 ) jQuery
 

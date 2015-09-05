@@ -2,10 +2,11 @@
 class DrawTop
 	@topUrl = '/top'
 	@timer
-	constructor: (root)->
+	constructor: (root, time)->
+		@timer = time
 		@root = root
 		@pendingUpdate = false
-	updateRootTop: ->
+	updateContent: =>
 		if !@pendingUpdate and @root?
 			@pendingUpdate = true
 			$.ajax
@@ -15,7 +16,7 @@ class DrawTop
 					@pendingUpdate = false
 					@startTimer()
 					return
-				error: (xhr, opts, e) ->
+				error: (xhr, opts, e) =>
 					console.log e
 					return
 		else
@@ -24,7 +25,7 @@ class DrawTop
 			@startTimer()
 	startTimer: (time) ->
 		if time? then @time = time
-		return @timer = setTimeout @updateRootTop(), if @time? then @time else 10 * 1000
+		return @timer = setTimeout @updateContent, if @time? then @time else 10 * 1000
 	stopTimer: ->
 		if @timer?
 			clearTimeout @timer

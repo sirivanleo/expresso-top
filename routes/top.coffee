@@ -1,6 +1,6 @@
 express = require 'express'
 router = express.Router()
-c = require('child_process')
+c = require 'child_process'
 
 # GET users listing.
 router.get '/', (req, res) ->

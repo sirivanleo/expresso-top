@@ -9,9 +9,9 @@ link-color = rgba(0,0,0,.5)
 link-hover = rgba(0,0,0,.4)
 /* Links */
 a
-    color link-color
+  color link-color
 a:focus,a:hover
-    color link-hover
+  color link-hover
 
 /* Custom default button */
 .btn-default
@@ -29,19 +29,24 @@ html,body
   background-color: body-color;
 
 body
-  color: text-color;
-  text-align: center;
-  // text-shadow: 0 1px 3px rgba(0,0,0,.5);
-
-.cover-container
-  margin-right: auto;
-  margin-left: auto;
-
+  color text-color
+  text-align center
 
 /* Padding for spacing */
 .inner
-  padding: 30px;
+  padding 30px
 
+.top-content
+    font-size 10px
+    white-space pre-wrap
+    text-align left
+    padding 5px
+    background-color rgba(0,0,0,.25)
+    border 2px solid rgba(0,0,0,.5)
+    overflow scroll
+    width 100%
+    height 100%
+    box-shadow 0 5px 10px 0px #777
 #links p
   text-align left
   margin-left 30px
@@ -68,11 +73,9 @@ body
     font-weight: bold
     color text-hover
     border-bottom 2px solid transparent
-
-.masthead-nav > li > a:hover,
-.masthead-nav > li > a:focus
-  background-color transparent
-  color link-hover
+    &:hover,&:focus
+      background-color transparent
+      color link-hover
 
 .masthead-nav > .active > a,
 .masthead-nav > .active > a:hover,
@@ -80,52 +83,46 @@ body
   color text-color
   border-bottom-color text-color
 
-
-@media (min-width: 768px) {
-  .masthead-brand {
-    float: left;
-  }
-  .masthead-nav {
-    float: right;
-  }
-}
-
-
-/*
- * Cover
- */
-
-.cover {
-  padding: 0 20px;
-}
-
+.cover
+  padding 0 20px
 
 /*
  * Footer
  */
 
-.mastfoot {
-  color: text-color; /* IE8 proofing */
-}
-
+.mastfoot
+  margin 20px auto 0 auto
+  padding-top 10px
+  border-top 1px solid rgba(0,0,0,.8)
+  color text-color
+  height 80px
 
 /*
  * Affix and center
  */
 
-@media (min-width: 768px) {
+@media (min-width: 768px)
+  .masthead-brand
+    float: left
+
+  .masthead-nav
+    float right
   /* Handle the widths */
   .masthead,
   .mastfoot,
-  .cover-container {
-    width: 100%; /* Must be percentage or pixels for horizontal alignment */
-  }
-}
+  .cover-container
+    width 100% /* Must be percentage or pixels for horizontal alignment */
+  .top-content
+    height 500px
 
-@media (min-width: 992px) {
+@media (min-width: 992px)
   .masthead,
   .mastfoot,
-  .cover-container {
-    width: 900px;
-  }
-}
+  .cover-container
+    width 900px
+
+@media (min-width: 1200px)
+  .masthead,
+  .mastfoot,
+  .cover-container
+    width 1170px
