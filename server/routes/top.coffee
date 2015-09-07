@@ -10,7 +10,7 @@ router.get '/', (req, res) ->
 	# console.log tData + "\n"
 	if tData.indexOf("-n max") > -1
 		# Linux
-		cmd = "top -n1"
+		cmd = "top -b -n1"
 	else if tData.indexOf("-l <samples>") > -1
 		# Mac OS
 		cmd = "top -n #{procs} -l1"
