@@ -5,12 +5,14 @@ var gulp = require('gulp'),
     plumber = require('gulp-plumber'),
     livereload = require('gulp-livereload'),
     stylus = require('gulp-stylus'),
+    bower = require('gulp-bower'),
     bowerMain = require('main-bower-files'),
     gulpFilter = require('gulp-filter'),
     concat = require('gulp-concat'),
     coffee = require('gulp-coffee'),
     clean = require('gulp-clean'),
-    uglify = require('gulp-uglify');
+    uglify = require('gulp-uglify'),
+    gulpSequence = require('gulp-sequence');
 
 var prdBuild = false;
 
@@ -19,11 +21,6 @@ gulp.task('prd', function() {
 });
 
 gulp.task('clean', function() {
-    gulp.src('public/components', {
-        read: false
-    }).pipe(clean(clean({
-        force: true
-    })));
     if (prdBuild) {
         //Do not continue
         return;
@@ -35,8 +32,10 @@ gulp.task('clean', function() {
         read: false
     }).pipe(clean());
 });
-
 gulp.task('bower', function() {
+    return bower();
+});
+gulp.task('bower-files', function() {
     var jsFilter = gulpFilter(prdBuild ? ['**/*.min.js'] : ['**/*.js', '!**/*.min.js'], {
             restore: true
         }),
@@ -44,9 +43,7 @@ gulp.task('bower', function() {
             restore: true
         });
 
-    gulp.src(bowerMain(), {
-            base: 'public/components'
-        })
+    gulp.src(bowerMain())
         .pipe(cssFilter)
         .pipe(concat('libs.css'))
         .pipe(gulp.dest('public/css/'))
@@ -101,16 +98,14 @@ gulp.task('develop', function() {
 });
 
 gulp.task('default', [
-    'bower',
+    'bower-files',
     'stylus',
     'client-coffee',
     'develop',
     'watch'
 ]);
-gulp.task('prdBuild', [
-    'prd',
-    'bower',
+gulp.task('prdBuild', gulpSequence('prd', 'bower', [
+    'bower-files',
     'stylus',
-    'client-coffee',
-    'clean'
-]);
+    'client-coffee'
+], 'clean'));
