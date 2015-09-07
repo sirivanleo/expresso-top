@@ -10,7 +10,7 @@ router.get '/', (req, res) ->
 	# console.log tData + "\n"
 	if tData.indexOf("-n max") > -1
 		# Linux
-		cmd = "top -b -n1"
+		cmd = "top -b -o %MEM -n1"
 	else if tData.indexOf("-l <samples>") > -1
 		# Mac OS
 		cmd = "top -ncols 12 -l1 -n #{procs}"
