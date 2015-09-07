@@ -1,23 +1,28 @@
 {
-  "name": "expresso-top",
-  "version": "0.0.1",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "components"
-  ],
-  "dependencies": {
-    "bootstrap": "~3.3.5",
-    "react": "~0.13.3"
-  },
-  "overrides": {
-    "bootstrap": {
-        "main": [
-            "./dist/js/bootstrap.js",
-            "./dist/js/bootstrap.min.js",
-            "./dist/css/*.css",
-            "./dist/fonts/*.*"
-        ]
+    "name": "expresso-top",
+    "version": "0.0.1",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "components"
+    ],
+    "dependencies": {
+        "bootstrap": "~3.3.5",
+        "react": "~0.13.3"
+    },
+    "overrides": {
+        "jquery": {
+            "main": [
+                "./dist/*.js"
+            ]
+        },
+        "bootstrap": {
+            "main": [
+                "./dist/js/bootstrap.js",
+                "./dist/js/bootstrap.min.js",
+                "./dist/css/*.css",
+                "./dist/fonts/*.*"
+            ]
+        }
     }
-  }
 }

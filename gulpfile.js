@@ -21,6 +21,11 @@ gulp.task('prd', function() {
 });
 
 gulp.task('clean', function() {
+    gulp.src('bower_components')
+        .pipe(clean({
+            force: true
+        }))
+
     if (prdBuild) {
         //Do not continue
         return;
@@ -96,16 +101,16 @@ gulp.task('develop', function() {
         this.stderr.pipe(process.stderr);
     });
 });
-
-gulp.task('default', [
-    'bower-files',
-    'stylus',
-    'client-coffee',
-    'develop',
-    'watch'
-]);
-gulp.task('prdBuild', gulpSequence('prd', 'bower', [
+gulp.task('build', gulpSequence('bower', [
     'bower-files',
     'stylus',
     'client-coffee'
-], 'clean'));
+]));
+
+gulp.task('default', [
+    'build',
+    'develop',
+    'watch'
+]);
+
+gulp.task('prd-build', gulpSequence('prd', 'bower', 'build'));
