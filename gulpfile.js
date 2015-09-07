@@ -1,3 +1,5 @@
+"use strict"
+
 var gulp = require('gulp'),
   nodemon = require('gulp-nodemon'),
   plumber = require('gulp-plumber'),
@@ -6,7 +8,16 @@ var gulp = require('gulp'),
   bowerMain = require('main-bower-files'),
   gulpFilter = require('gulp-filter'),
   concat = require('gulp-concat'),
-  coffee = require('gulp-coffee');
+  coffee = require('gulp-coffee'),
+  clean = require('gulp-clean');
+
+var env = process.env.NODE_ENV || 'development'
+
+gulp.task('clean', function() {
+  gulp.src('public/components', {read: false}).pipe(clean());
+  gulp.src('public/**/*.js', {read: false}).pipe(clean());
+  gulp.src('public/**/*.css', {read: false}).pipe(clean());
+});
 
 gulp.task('bower', function() {
   var jsFilter = gulpFilter('**/*.js'),
@@ -24,7 +35,7 @@ gulp.task('bower', function() {
 });
 
 gulp.task('stylus', function () {
-  gulp.src('./public/css/*.styl')
+  gulp.src('./client/css/*.styl')
     .pipe(plumber())
     .pipe(stylus())
     .pipe(gulp.dest('./public/css'))
@@ -32,15 +43,15 @@ gulp.task('stylus', function () {
 });
 
 gulp.task('client-coffee', function(){
-  gulp.src('./public/coffee/*.coffee')
+  gulp.src('./client/coffee/*.coffee')
     .pipe(coffee({bare: false}))
     .pipe(concat('client.js'))
     .pipe(gulp.dest('./public/js/'));
 });
 
 gulp.task('watch', function() {
-  gulp.watch('./public/css/*.styl', ['stylus']);
-  gulp.watch('./public/coffee/*.coffee', ['client-coffee']);
+  gulp.watch('./client/css/*.styl', ['stylus']);
+  gulp.watch('./client/coffee/*.coffee', ['client-coffee']);
 });
 
 gulp.task('develop', function () {

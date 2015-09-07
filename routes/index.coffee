@@ -10,6 +10,7 @@ router.get '/', (req, res) ->
 		'Sonarr' : '/tv',
 		'Plex' : '/web'
 	}
+
 	res.render 'index', { title: 'XbServ', links }
 
 module.exports = router

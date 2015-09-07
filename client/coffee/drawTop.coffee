@@ -30,4 +30,4 @@ class DrawTop
 		if @timer?
 			clearTimeout @timer
 
-	window.DrawTop = DrawTop
+window.DrawTop = DrawTop
