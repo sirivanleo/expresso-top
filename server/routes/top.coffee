@@ -4,7 +4,7 @@ c = require 'child_process'
 
 # GET users listing.
 router.get '/', (req, res) ->
-	procs = 15
+	procs = 20
 	check_top = c.execSync "top -h"
 	tData = "" + check_top.toString().replace /(?:\r\n|\r|\n|\t\t)/g, ""
 	# console.log tData + "\n"
@@ -13,7 +13,7 @@ router.get '/', (req, res) ->
 		cmd = "top -b -n1"
 	else if tData.indexOf("-l <samples>") > -1
 		# Mac OS
-		cmd = "top -n #{procs} -l1"
+		cmd = "top -ncols 12 -l1 -n #{procs}"
 	if !cmd? or cmd == '' then return console.log "no valid top"
 	# console.log "cmd is #{cmd}"
 	actual_top = c.exec cmd
