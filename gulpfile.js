@@ -86,7 +86,7 @@ gulp.task('watch', function() {
 gulp.task('develop', function() {
     livereload.listen();
     nodemon({
-        script: 'bin/www',
+        script: 'index.js',
         ext: 'js jade coffee',
         stdout: false
     }).on('readable', function() {

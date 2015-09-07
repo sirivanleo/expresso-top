@@ -1,9 +1,9 @@
 "use strict"
 class DrawTop
 	@topUrl = '/top'
-	@timer
+	@time
 	constructor: (root, time)->
-		@timer = time
+		@time = time
 		@root = root
 		@pendingUpdate = false
 	updateContent: =>
