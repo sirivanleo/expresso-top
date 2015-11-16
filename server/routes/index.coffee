@@ -5,10 +5,10 @@ router = express.Router()
 
 router.get '/', (req, res) ->
 	links = {
-		'SabNzb' : '/sab',
-		'Couchpotato' : '/movies'
-		'Sonarr' : '/tv',
-		'Plex' : '/web'
+		'Downloads' : '/sab',
+		'Movies' : '/movies'
+		'TV' : '/tv',
+		'Media' : '/web'
 	}
 
 	res.render 'index', { title: 'XbServ', links }
